@@ -42,11 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculaAcimaSeteSalarios.cs" />
+    <Compile Include="CalculaAteCincoSalarios.cs" />
+    <Compile Include="CalculaAteDoisSalarios.cs" />
+    <Compile Include="CalculaAteQuatroSalarios.cs" />
+    <Compile Include="CalculaAteSeteSalarios.cs" />
+    <Compile Include="CalculaIR.cs" />
+    <Compile Include="Contribuinte.cs" />
+    <Compile Include="ICalcula.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalarioMinimo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Teste.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
