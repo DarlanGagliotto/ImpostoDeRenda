@@ -42,12 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculaAcimaSeteSalarios.cs" />
-    <Compile Include="CalculaAteCincoSalarios.cs" />
-    <Compile Include="CalculaAteDoisSalarios.cs" />
-    <Compile Include="CalculaAteQuatroSalarios.cs" />
-    <Compile Include="CalculaAteSeteSalarios.cs" />
-    <Compile Include="CalculaIR.cs" />
+    <Compile Include="CalculadorAcimaSeteSalarios.cs" />
+    <Compile Include="CalculadorAteCincoSalarios.cs" />
+    <Compile Include="CalculadorAteDoisSalarios.cs" />
+    <Compile Include="CalculadorAteQuatroSalarios.cs" />
+    <Compile Include="CalculadorAteSeteSalarios.cs" />
+    <Compile Include="CalculadorIR.cs" />
     <Compile Include="Contribuinte.cs" />
     <Compile Include="ICalcula.cs" />
     <Compile Include="Program.cs" />
