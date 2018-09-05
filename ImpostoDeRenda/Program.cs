@@ -11,10 +11,6 @@ namespace ImpostoDeRenda
 {
     class Program
     {
-        public static ICollection<Contribuinte> contribuintes = new List<Contribuinte>();
-
-        private static decimal salarioMin;
-
         #region stringsInforme
         private static string informeNome => "Informe o nome do contribuinte";
         private static string informeNumDependetes => "Informe o número de dependentes";
@@ -22,6 +18,10 @@ namespace ImpostoDeRenda
         private static string informeSalMin => "Informe o valor do salário mínimo";
         private static string informeCpf => "Informe o CPF do contribuinte";
         #endregion
+
+        public static ICollection<Contribuinte> contribuintes = new List<Contribuinte>();
+
+        private static decimal salarioMin;
 
         static void Main(string[] args)
         {
@@ -40,7 +40,7 @@ namespace ImpostoDeRenda
                 if (cpf.Equals("0"))
                 {
                     Console.WriteLine(informeSalMin);
-                    salarioMin = VerificarCaracteres(new SalarioMinimo(Convert.ToDecimal(Console.ReadLine())).InformarSalarioMinimo(),informeSalMin);
+                    salarioMin = VerificarCaracteres(new SalarioMinimo(Convert.ToDecimal(Console.ReadLine())).InformarSalarioMinimo().ToString(),informeSalMin);
                     return;
                 }
 
@@ -51,7 +51,7 @@ namespace ImpostoDeRenda
                 var numDependentes = VerificarCaracteres(Console.ReadLine(), informeNumDependetes);
 
                 Console.WriteLine(informeRendaBruta);
-                var valorRendaBruta = VerificarCaracteres(Convert.ToDecimal(Console.ReadLine()),informeRendaBruta);
+                var valorRendaBruta = VerificarCaracteres(Console.ReadLine(),informeRendaBruta);
 
                 contribuintes.Add(new Contribuinte
                 {
@@ -77,16 +77,16 @@ namespace ImpostoDeRenda
             foreach (var result in contribuintes.Where(x => x.Cpf != "0").OrderBy(x => x.ValorIr).ThenBy(x => x.Nome))
             {
                 Console.WriteLine("Contribuinte: " + result.Nome);
-                Console.WriteLine("Valor IR: " + result.ValorIr.ToString("C", new CultureInfo("pt-BR")));
+                Console.WriteLine("Valor IR: " + (result.ValorIr == 0 ? "Isento" : result.ValorIr.ToString("C", new CultureInfo("pt-BR"))));
             }
 
             Console.WriteLine("F I M!");
             Console.ReadKey();
         }
 
-        private static T VerificarCaracteres<T>(T valor, string msgTela)
-        {
-            if (Regex.IsMatch(valor.ToString(), @"^[a-zA-Z]"))
+        private static decimal VerificarCaracteres(string valor, string msgTela)
+        {   
+            if(!decimal.TryParse(valor, out var numero))
             {
                 Console.WriteLine("Entrada inválida! Informe somente números");
 
@@ -94,9 +94,9 @@ namespace ImpostoDeRenda
 
                var numDependentes = Console.ReadLine();
 
-                if (numDependentes != null) VerificarCaracteres(valor: numDependentes, msgTela: msgTela);
+                if (numDependentes != null) VerificarCaracteres(numDependentes, msgTela);
             }
-            return valor;
+            return numero;
         }
     }
 }
